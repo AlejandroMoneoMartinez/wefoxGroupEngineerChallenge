@@ -2,6 +2,7 @@ package com.wefox.demo.component;
 
 import com.wefox.demo.exception.PaymentException;
 import com.wefox.demo.service.PaymentService;
+import com.wefox.domain.dto.Error;
 import com.wefox.domain.entity.Payment;
 import lombok.AllArgsConstructor;
 import org.apache.commons.logging.Log;
@@ -32,6 +33,13 @@ public class PaymentConsumer {
 
     @KafkaListener(topics = "online", groupId = "onlineGroup")
     public void consumerOnlinePayment(Payment payment){
-        LOG.info(payment);
+        try {
+            if (paymentService.validateOnlinePayment(payment))
+                paymentService.createPayment(payment);
+        } catch (PaymentException e) {
+            LOG.error(e.getError());
+        } catch (DataAccessException e) {
+            LOG.error(e.getMessage());
+        }
     }
 }

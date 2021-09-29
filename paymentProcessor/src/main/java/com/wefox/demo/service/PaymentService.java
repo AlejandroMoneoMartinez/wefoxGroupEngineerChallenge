@@ -25,10 +25,16 @@ public class PaymentService {
 
     private AccountRepository accountRepository;
 
+    private RestTemplate restTemplate;
 
-    public PaymentService(PaymentRepository paymentRepository, AccountRepository accountRepository) {
+    @Value("${global.validatePaymentEndpoint}")
+    private String validatePaymentEndpoint;
+
+
+    public PaymentService(PaymentRepository paymentRepository, AccountRepository accountRepository, RestTemplate restTemplate) {
         this.paymentRepository = paymentRepository;
         this.accountRepository = accountRepository;
+        this.restTemplate = restTemplate;
     }
 
     @Transactional(rollbackFor={Exception.class})
@@ -42,5 +48,16 @@ public class PaymentService {
         accountDb.setLastPaymentDate(payment.getCreatedOn());
         accountRepository.save(accountDb);
         return paymentRepository.save(payment);
+    }
+
+    public boolean validateOnlinePayment(Payment payment) throws PaymentException {
+        try {
+            return restTemplate.postForEntity(validatePaymentEndpoint, new HttpEntity<>(payment), String.class)
+                    .getStatusCode().equals(HttpStatus.OK);
+        } catch (HttpStatusCodeException e) {
+            throw new PaymentException(new Error(payment.getPaymentId(), Error.ErrorType.network, e.getStatusText()));
+        } catch (RestClientException e) {
+            throw new PaymentException(new Error(payment.getPaymentId(), Error.ErrorType.network, "Runtime exception"));
+        }
     }
 }
