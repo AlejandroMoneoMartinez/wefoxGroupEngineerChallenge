@@ -18,3 +18,4 @@ server:
   port: 8080
 global:
   validatePaymentEndpoint: http://localhost:9000/payment
+  logEndpoint: http://localhost:9000/log
