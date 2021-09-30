@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: paymentProcessor
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: ${DDL_AUTO}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  kafka:
+    bootstrap-servers: ${BOOTSTRAP_SERVERS}
+server:
+  port: 8080
+global:
+  validatePaymentEndpoint: ${VALIDATE_PAYMENT_ENDPOINT}
+  logEndpoint: ${LOG_ENDPOINT}

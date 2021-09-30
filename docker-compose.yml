@@ -68,3 +68,26 @@ services:
     depends_on:
       - postgress
       - kafka-server
+
+  payment-processor:
+    container_name: payment-processor
+    build:
+      context: paymentProcessor
+      dockerfile: Dockerfile
+    image: payment-processor:latest
+    environment:
+      - JDBC_DATABASE_URL=jdbc:postgresql://postgress:5432/payments
+      - JDBC_DATABASE_USERNAME=tech
+      - JDBC_DATABASE_PASSWORD=test
+      - DDL_AUTO=validate
+      - BOOTSTRAP_SERVERS=kafka-server:9092
+      - VALIDATE_PAYMENT_ENDPOINT=http://api-producer:8080/payment
+      - LOG_ENDPOINT=http://api-producer:8080/log
+    ports:
+      - 8090:8090
+    networks:
+      - kafka-net
+    depends_on:
+      - postgress
+      - kafka-server
+      - api-producer
