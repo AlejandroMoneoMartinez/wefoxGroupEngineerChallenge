@@ -1,4 +1,4 @@
-package com.wefox.demo.service;
+package com.wefox.paymentProcessor.service;
 
 import com.wefox.domain.dto.Error;
 import org.apache.commons.logging.Log;

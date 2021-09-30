@@ -1,8 +1,8 @@
-package com.wefox.demo.component;
+package com.wefox.paymentProcessor.component;
 
-import com.wefox.demo.exception.PaymentException;
-import com.wefox.demo.service.LogService;
-import com.wefox.demo.service.PaymentService;
+import com.wefox.paymentProcessor.exception.PaymentException;
+import com.wefox.paymentProcessor.service.LogService;
+import com.wefox.paymentProcessor.service.PaymentService;
 import com.wefox.domain.dto.Error;
 import com.wefox.domain.entity.Payment;
 import lombok.AllArgsConstructor;

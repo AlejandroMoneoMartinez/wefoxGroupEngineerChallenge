@@ -9,12 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wefox</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>paymentProcessor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>paymentProcessor</name>
-	<description>Demo project for Spring Boot</description>
+	<description></description>
 	<properties>
 		<java.version>11</java.version>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 	<dependencies>
 		<dependency>

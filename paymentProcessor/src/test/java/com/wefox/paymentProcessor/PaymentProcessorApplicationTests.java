@@ -1,4 +1,4 @@
-package com.wefox.demo;
+package com.wefox.paymentProcessor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

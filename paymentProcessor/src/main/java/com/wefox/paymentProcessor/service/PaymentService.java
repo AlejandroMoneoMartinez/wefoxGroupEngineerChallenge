@@ -1,6 +1,6 @@
-package com.wefox.demo.service;
+package com.wefox.paymentProcessor.service;
 
-import com.wefox.demo.exception.PaymentException;
+import com.wefox.paymentProcessor.exception.PaymentException;
 import com.wefox.domain.dto.Error;
 import com.wefox.domain.entity.Account;
 import com.wefox.domain.entity.Payment;
@@ -9,7 +9,6 @@ import com.wefox.repository.jpaRepository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpStatusCodeException;

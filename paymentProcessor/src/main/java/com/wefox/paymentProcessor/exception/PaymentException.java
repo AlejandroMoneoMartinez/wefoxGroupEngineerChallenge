@@ -1,4 +1,4 @@
-package com.wefox.demo.exception;
+package com.wefox.paymentProcessor.exception;
 
 import com.wefox.domain.dto.Error;
 

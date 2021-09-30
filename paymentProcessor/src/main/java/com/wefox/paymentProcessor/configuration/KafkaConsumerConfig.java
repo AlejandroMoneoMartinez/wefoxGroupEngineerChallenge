@@ -1,4 +1,4 @@
-package com.wefox.demo.configuration;
+package com.wefox.paymentProcessor.configuration;
 
 import com.wefox.domain.entity.Payment;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
